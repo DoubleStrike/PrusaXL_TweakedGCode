@@ -12,7 +12,7 @@ These are based on the Prusa default start G-Code but with a few options:
 
   It *DOES NOT* do a preheating of the bed, but *DOES* include the "Absorbing Heat" pause (`G29 G`) before printing starts, to allow for expansion of the printbed and related areas.
   
-* Tweaked PreHeat - This version adds an extended full-bed preheat to allow for everything to expand and come up to temperature. It sets the bed to 100C for 5 minutes, then continues with the printing process. 
+* Tweaked PreHeat - This version adds an extended full-bed preheat to allow for everything to expand and come up to temperature. It sets the bed to 100C for 5 minutes, then continues with the printing process. **I have found this to be very useful for printers sitting in a relatively cold room like a basement or garage.**
 
   It also *DOES* include the "Absorbing Heat" pause (`G29 G`) before printing starts, to allow for a little cooling time from the preheat temperature down to the desired printbed set value. Note that the extended preheat first warms the entire bed before then doing the absorbing heat on the printed area only.
   
