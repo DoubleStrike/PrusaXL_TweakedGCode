@@ -8,7 +8,7 @@ These are based on the Prusa default start G-Code but with a few options:
 
 
 
-* Tweaked NoHeat - This is likely the standard for most folks. 
+* Tweaked NoPreheat - This is likely the standard for most folks. 
 
   It *DOES NOT* do a preheating of the bed, but *DOES* include the "Absorbing Heat" pause (`G29 G`) before printing starts, to allow for expansion of the printbed and related areas.
   
