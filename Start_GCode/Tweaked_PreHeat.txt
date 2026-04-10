@@ -25,7 +25,7 @@ M217 Z{max(zhop, 2.0)} ; set toolchange z hop to 2mm, or zhop variable from slic
 ; start custom gcode for extended preheat ==================================
 M117 Extended high-temp bed preheat ; send this message to the display
 M104 T{initial_tool} S{if is_nil(idle_temperature[initial_tool])}70{else}{idle_temperature[initial_tool]}{endif} ; set idle temp
-M140 S100 ; set bed temp
+M190 S100 ; set bed temp and wait to ensure the preheat time below is spent at full temperature
 G4 S300; wait for 5 minutes (300 seconds)
 M117 Continuing with print ; send this message to the display
 ; end custom gcode =========================================================
