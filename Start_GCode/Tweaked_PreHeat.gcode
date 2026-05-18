@@ -57,10 +57,17 @@ G0 Z5 ; add Z clearance
 ; move down 50mm on Z to allow room for cleaning
 G1 Z50
 
+; (EARLY_NOZZLE_PREHEAT) Preheats any active nozzles to idle temp before other operations happen
+{if num_extruders > 0 and (is_extruder_used[0])}M104 T0 S{if is_nil(idle_temperature[0])}70{else}{idle_temperature[0]}{endif}{endif}
+{if num_extruders > 1 and (is_extruder_used[1])}M104 T1 S{if is_nil(idle_temperature[1])}70{else}{idle_temperature[1]}{endif}{endif}
+{if num_extruders > 2 and (is_extruder_used[2])}M104 T2 S{if is_nil(idle_temperature[2])}70{else}{idle_temperature[2]}{endif}{endif}
+{if num_extruders > 3 and (is_extruder_used[3])}M104 T3 S{if is_nil(idle_temperature[3])}70{else}{idle_temperature[3]}{endif}{endif}
+{if num_extruders > 4 and (is_extruder_used[4])}M104 T4 S{if is_nil(idle_temperature[4])}70{else}{idle_temperature[4]}{endif}{endif}
+
 M104 T{initial_tool} S{if is_nil(idle_temperature[initial_tool])}70{else}{idle_temperature[initial_tool]}{endif} ; set idle temp
 M190 S[first_layer_bed_temperature] ; wait for bed temp
 
-;G29 G ; absorb heat - skip since preheat covers this
+G29 G ; absorb heat - skip since preheat covers this
 G4 S30; wait for 30 seconds to lower the temp
 
 M109 T{initial_tool} S{((filament_notes[initial_tool]=~/.*MBL160.*/) ? 160 : (filament_notes[initial_tool]=~/.*HT_MBL10.*/) ? (first_layer_temperature[initial_tool] - 10) : (filament_type[initial_tool] == "PC" or filament_type[initial_tool] == "PA") ? (first_layer_temperature[initial_tool] - 25) : (filament_type[initial_tool] == "FLEX") ? 180 : (filament_type[initial_tool]=~/.*PET.*/) ? 175 : 170)} ; wait for temp
