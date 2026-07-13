@@ -85,7 +85,7 @@ G1 Z50
 M104 T{initial_tool} S{if is_nil(idle_temperature[initial_tool])}70{else}{idle_temperature[initial_tool]}{endif} ; set idle temp
 M190 S[first_layer_bed_temperature] ; wait for bed temp
 
-G29 G ; absorb heat - skip since preheat covers this
+;G29 G ; absorb heat - skip since preheat covers this
 G4 S30; wait for 30 seconds to lower the temp
 
 M109 T{initial_tool} S{((filament_notes[initial_tool]=~/.*MBL160.*/) ? 160 : (filament_notes[initial_tool]=~/.*HT_MBL10.*/) ? (first_layer_temperature[initial_tool] - 10) : (filament_type[initial_tool] == "PC" or filament_type[initial_tool] == "PA") ? (first_layer_temperature[initial_tool] - 25) : (filament_type[initial_tool] == "FLEX") ? 180 : (filament_type[initial_tool]=~/.*PET.*/) ? 175 : 170)} ; wait for temp
