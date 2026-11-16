@@ -86,6 +86,42 @@ M84 E ; turn off E motor
 G29 P9 X{((((first_layer_print_min[0] + first_layer_print_max[0]) / 2) < ((print_bed_min[0] + print_bed_max[0]) / 2)) ? (((first_layer_print_min[1] - 7) < -2) ? 70 : (min(print_bed_max[0], first_layer_print_min[0] + 32) - 32)) : (((first_layer_print_min[1] - 7) < -2) ? 260 : (min(print_bed_max[0], first_layer_print_min[0] + 32) - 32)))} Y{(first_layer_print_min[1] - 7)} W{32} H{7}
 G0 Z5 F480 ; move away in Z
 M107 ; turn off the fan
+
+
+; (NOZZLE_WIPE_FRONT) Wipe the nozzle at the front of the bed before starting the print
+;       Assumes properly installed https://www.printables.com/model/644817-prusa-xl-series-front-nozzle-scrubber-including-g-
+; --- Start Nozzle Wipe: center of bed ---
+; Ensure nozzle is at a safe Z height to travel to the brush area
+;
+;G1 Z10 F270           ; Move to clear Z
+;
+;G1 X160 Y-8 F6000        ; Move to start of wipe area
+;G1 Z0 F270               ; Move down to 0 on Z 
+;G1 X205 Y-8.5 F12000     ; Wipe pass 1
+;G1 X160 Y-8.5 F12000     ; Reposition
+;G1 X205 Y-8.5 F12000     ; Wipe pass 2
+;G1 X160 Y-8.5 F12000     ; Reposition
+;G1 X205 Y-8.5 F12000     ; Wipe pass 3
+;G1 X160 Y-8   F12000     ; Reposition
+;G1 X205 Y-8   F12000     ; Wipe pass 4
+;G1 X160 Y-8   F12000     ; Reposition
+;G1 X205 Y-8   F12000     ; Wipe pass 5
+;G1 X160 Y-7.5 F6000      ; Reposition
+;G1 X205 Y-7.5 F24000     ; Wipe pass 6
+;G1 X160 Y-7.5 F24000     ; Reposition
+;G1 X205 Y-7.5 F24000     ; Wipe pass 7
+;G1 X160 Y-7.5 F24000     ; Reposition
+;G1 X205 Y-7.5 F24000     ; Wipe pass 8
+;G1 X160 Y-7.5 F24000     ; Reposition
+;G1 X205 Y-7.5 F24000     ; Wipe pass 9
+;G1 X160 Y-7.5 F24000     ; Reposition
+;G1 X205 Y-7.5 F24000     ; Wipe pass 10
+;
+;G1 X0 Y0 Z10 F6000        ; Reset position
+;
+; --- End Nozzle Wipe ---
+
+
 ; MBL
 M84 E ; turn off E motor
 G29 P1 ; invalidate mbl & probe print area
