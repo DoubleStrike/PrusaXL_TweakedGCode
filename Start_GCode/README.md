@@ -2,7 +2,7 @@
 
 This folder contains options for the Start G-Code section of your slicer.
 
-
+The nozzle wiping sections, which are commented out by default, are assuming the use of this model by Surfalex: https://www.printables.com/model/644817-prusa-xl-series-front-nozzle-scrubber-including-g-
 
 These are based on the Prusa default start G-Code but with a few options:
 
